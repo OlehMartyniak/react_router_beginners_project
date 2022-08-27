@@ -1,0 +1,19 @@
+Video sourse:
+    https://www.youtube.com/watch?v=Cv_JhlKUpto&list=PL0Zuz27SZ-6PrE9srvEn8nbhOOyxnWXfp&index=16&ab_channel=DaveGray
+
+Встановити:
+    npm i react-router-dom
+
+В index.js:
+
+    import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+    root.render(
+    <React.StrictMode>
+        <Router>
+        <Route path='/' component={App}/>
+        </Router>
+    </React.StrictMode>
+    );
+
+На сторінці постійно будуть залишатись такі елементи: Header,Nav,Footer    

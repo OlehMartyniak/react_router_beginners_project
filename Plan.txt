@@ -132,7 +132,7 @@ const PostPage = ({ posts, handleDelete }) => {
     const post = posts.find((post) => post.id.toString() === id);
 
     return (
-        <main className="postPage">
+        <main className="PostPage">
             <article className="post">
                 {post && (
                     <>
@@ -191,6 +191,52 @@ const handleSubmit = (e) => {
   setPostBody("");
   navigate("/") 
 };
+
+Сторінка NewPost:
+
+const NewPost = ({
+     handleSubmit, postTitle, setPostTitle, postBody, setPostBody
+ }) => {
+     return (
+         <main className="NewPost">
+             <h2>New Post</h2>
+             <form className="newPostForm" onSubmit={handleSubmit}>
+                 <label htmlFor="postTitle">Title:</label>
+                 <input
+                     id="postTitle"
+                     type="text"
+                     required
+                     value={postTitle}
+                     onChange={(e) => setPostTitle(e.target.value)}
+                 />
+                 <label htmlFor="postBody">Post:</label>
+                 <textarea
+                     id="postBody"
+                     required
+                     value={postBody}
+                     onChange={(e) => setPostBody(e.target.value)}
+                 />
+                 <button type="submit">Submit</button>
+             </form>
+         </main>
+     )
+ }
+
+Пропишемо useEffect, щоб можна було здійснювати пошук наших постів, а також розставимо їх від найновішого:
+
+  useEffect(() => {
+    const filteredResults = posts.filter((post) =>
+      ((post.body).toLowerCase()).includes(search.toLowerCase())
+      || ((post.title).toLowerCase()).includes(search.toLowerCase()));
+
+    setSearchResults(filteredResults.reverse());
+  }, [posts, search])
+
+І модифікуємо пропсу в роуті, який виводить пости:
+
+<Route index element={<Home posts={searchResults} />} />
+
+
 
 
 

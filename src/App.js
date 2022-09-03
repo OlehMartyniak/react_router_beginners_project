@@ -1,15 +1,12 @@
+import React, { useEffect } from "react";
 import About from "./pages/About";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
 import Home from "./pages/Home";
 import Missing from "./pages/Missing";
-import Nav from "./components/Nav";
 import NewPost from "./pages/NewPost";
 import PostPage from "./pages/PostPage";
 import Layout from "./pages/Layout";
 import postsData from "./data/data";
 import { format } from "date-fns";
-
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -20,6 +17,14 @@ const App = () => {
     const [postTitle, setPostTitle] = useState("");
     const [postBody, setPostBody] = useState("");
     const navigate = useNavigate();
+
+    useEffect(()=>{
+      const filteredResults = posts.filter(post => 
+        ((post.body).toLowerCase()).includes(search.toLowerCase())
+        || ((post.title).toLocaleLowerCase()).includes(search.toLowerCase()));
+
+        setSearchResults(filteredResults.reverse())
+    },[posts,search]);
 
     const handleDelete = (id) => {
         const postsList = posts.filter((post) => post.id !== id);

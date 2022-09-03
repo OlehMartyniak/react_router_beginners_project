@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Missing = () => {
     return (
-      <main>
-          <h1>Missing</h1>
+      <main className="Missing">
+          <h2>Page not found</h2>
+          <p><Link to="/">Go to Home page</Link></p>
       </main>
     )
   };
